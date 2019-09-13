@@ -1,0 +1,129 @@
+<!-- Header Screen -->
+
+<nav class="navbar navbar-expand-md navbar-light bg-light myShadow">
+        <div class="container">
+          <a class="navbar-brand" href="/dashboard">
+            <img src="./assets/todoish logo.png" class="d-inline-block align-top" alt="todosih logo">
+          </a>
+      
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                  <button class="btn btn-xl btn-block" type="button" (click)="logout()"><b>Sign Out</b></button>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+
+    <br><br><br>
+
+<!-- Main Screen -->
+
+<div class="container">
+
+    <div class="row" *ngIf="task">
+
+        <div class="col-md-4">
+
+            <div class="card bg-light" style="text-align: center">
+                <div class="card-header">
+                    <h5 class="card-title" style="font-size:2rem;">{{task[0].taskName}}</h5>
+                    <p>{{task[0].isPrivate?'Private':'Public'}}</p>
+                </div>
+                <div class="card-body">
+                    <p>{{task[0].createdBy}}</p>
+                    <p>{{task[0].createdOn | date}}</p>
+                    <button type="button" class="btn btn-secondary" [routerLink]="['/dashboard']">Go Back</button>&nbsp;
+                    <button type="button" class="btn btn-danger" (click)="deleteTask()">Delete Task</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card col-md-8" style="padding:3rem 2rem; background-color:#f8f8f8;">
+
+            <div>
+
+                <div class="row" style="margin-left: 2rem;">
+                    <div class="col-md-7"><b>Item Name</b></div>
+                    <div class="col-md-5"><b>Added By</b></div>
+                </div>
+
+                <br>
+
+                <div class="form-group" style="margin-left: 2rem;" *ngFor="let item of allItems">
+                    <!-- <div *ngIf="item.parentId == task.taskId"> -->
+                    <div class="input-group mb-3">
+                        <input type="text" [(ngModel)]="item.itemName" [ngModelOptions]="{standalone: true}"
+                            class="form-control" placeholder="Enter list item" required>
+                        <div class="input-group-append">
+                            <input type="text" [(ngModel)]="item.itemCreatorBy" [ngModelOptions]="{standalone: true}"
+                                class="form-control" placeholder="Enter list item itemCreatorBy" required>
+                        </div>
+                        <div class="input-group-append">
+                            <button class="btn btn-light"
+                                (click)="deleteItem(item.itemId)"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="row" style="text-align: center">
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-light btn-border" data-toggle="modal" data-target="#createItem">Add Item&nbsp;&nbsp;<i class="fas fa-plus-circle"></i></button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-light btn-border" (click)="undo()">Revert Changes&nbsp;&nbsp;<i class="fas fa-undo"></i></button>
+                    </div>
+                </div>
+
+                <!-- Create Item Modal -->
+                <div class="modal fade" id="createItem" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Create Item</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Item Name</label>
+                                    <input type="text" class="form-control" [(ngModel)]="itemName" #item="ngModel"
+                                        name="itemName" aria-describedby="itemNameHelp" placeholder="Enter a new item"
+                                        required autofocus>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" (click)="createItem()"
+                                    [disabled]="!item.valid">Create</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<br><br><br>
+
+<footer class="py-5" style="background-color: #f0f0f0">
+    <div class="container">
+      <p class="small">Copyright <span class="colorLayer">&copy; todoish.online </span>2019</p>
+    </div>
+</footer>

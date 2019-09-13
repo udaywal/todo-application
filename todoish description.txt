@@ -1,0 +1,32 @@
+todoish.online - a perfect todo project management applicaition.
+
+> Project details - 
+
+web url: todoish.online
+backend url: api.todoish.online
+api documentaiton: apidoc.todoish.online
+application developer: Vaibhav Udaywal
+technologies used: frontend> angular
+		backend> nodeJs + express
+		database> mongodb
+		others> sockets
+github repo: https://github.com/udaywal/todoish.online.git (both frontend+backend)
+
+> Project decription - 
+
+todoish.online is a simple project management application, more specifically a todo task maker system which help creating more focused project management.
+todoish.online delivers a good user experience with its minimal theming and call to action all over the platform entice user to spent more time on platform.
+
+> Project features -
+
+Basically, anyone can join this platform with ease, once logged in user is ready to create tasks.
+
+Now user has two options 
+one either create public task which can be accessible by your friends not all user in system.  
+or you can create private tasks and only you can access them.
+
+In tasks, you can create items related to task which make project management ease. You also have undo option incase you make a wrong move.
+
+todoish.online has real time functionalities like real time updates to you when your friend update/delete your public list.
+
+Application also has most of all basic features like reseting password, error handling etc.
